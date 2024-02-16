@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\categorycontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::get('/', function () {
 
 // route for admincontroller with rsc
 Route::resource('admin', AdminController::class);
+route::resource('category', categorycontroller::class);
 
 
 
