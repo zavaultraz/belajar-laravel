@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AboutControlle;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
