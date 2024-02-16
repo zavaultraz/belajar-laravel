@@ -1,1 +1,5 @@
-ini halaman admin index
+@extends('admin.parent)
+
+@section('content')
+punyaku
+@endsection
