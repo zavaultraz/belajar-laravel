@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 // route for admincontroller with rsc
 Route::resource('admin', AdminController::class);
+// route to show add category 
 route::resource('category', categorycontroller::class);
 
 
