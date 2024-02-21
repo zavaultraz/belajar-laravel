@@ -42,12 +42,17 @@ class categorycontroller extends Controller
             'name'=> 'required'
         ]);
         //simpan data ke data bas
-     Category::create([
-            'name'=>$request->name,
-            'slug'=> Str::slug($request->name)
-        ]);
-        //jka sudah kembali kehalaman category.index
-        return redirect()->route('category.index');
+     if (Category::create([
+        'name'=>$request->name,
+        'slug'=> Str::slug($request->name)
+    ])) {
+         //jka sudah kembali kehalaman category.index
+         return redirect()->route('category.index');
+     } else {
+        # code...
+     }
+     
+       
     }
 
     /**

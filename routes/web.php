@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BuahController;
 use App\Http\Controllers\categorycontroller;
 
 /*
@@ -24,5 +25,5 @@ Route::resource('admin', AdminController::class);
 // route to show add category 
 route::resource('category', categorycontroller::class);
 
-
+route::resource('buah', BuahController::class);
 
