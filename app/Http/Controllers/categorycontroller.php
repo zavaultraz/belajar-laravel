@@ -38,26 +38,24 @@ class categorycontroller extends Controller
     {
         //lakukan function store
         //lakukan valdasi
-        $this->validate($request,[
-            'name'=> 'required'
+        $this->validate($request, [
+            'name' => 'required'
         ]);
         //simpan data ke data bas
-     if (
-        Category::create([
-            'name'=>$request->name,
-            'slug'=> Str::slug($request->name)
-        ])
-     ){
-        //jka sudah kembali kehalaman category.index
-        return redirect()->route('category.index')
-        ->with(['succes'], 'data kesimpen');
-
+        if (
+            Category::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name)
+            ])
+        ) {
+            //jka sudah kembali kehalaman category.index
+            return redirect()->route('category.index')
+                ->with(['succes'], 'data kesimpen');
+        } else {
+            return redirect()->route('category.create')
+                ->with(['error'], 'data gagal kesimpen');
+        }
     }
-    else {
-        return redirect()->route('category.create')
-        ->with(['error'], 'data gagal kesimpen');
-    }
-}
 
     /**
      * Display the specified resource.
