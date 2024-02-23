@@ -15,7 +15,9 @@ class categorycontroller extends Controller
      */
     public function index()
     {
-        return view('category.index');
+        // return kearah index blade
+        $category = Category::all();
+        return view('category.index', compact('category'));
     }
 
     /**
@@ -50,10 +52,10 @@ class categorycontroller extends Controller
         ) {
             //jka sudah kembali kehalaman category.index
             return redirect()->route('category.index')
-                ->with(['succes'], 'data kesimpen');
+                ->with(['succes' => 'data kesimpen']);
         } else {
             return redirect()->route('category.create')
-                ->with(['error'], 'data gagal kesimpen');
+                ->with(['error' => 'data gagal kesimpen']);
         }
     }
 
@@ -65,7 +67,8 @@ class categorycontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('Category.show', compact('category'));
     }
 
     /**
@@ -76,7 +79,8 @@ class categorycontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('Category.edit', compact('category'));
     }
 
     /**
@@ -88,7 +92,18 @@ class categorycontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validate
+        $this->validate($request, ['name' => 'required']);
+        //get data by id
+        $category = Category::findOrFail($id);
+        //update data
+        $category->update([
+            'name'=> $request->name,
+            'slug'=> Str::slug($request->name)
+        ]);
+ 
+        return redirect()->route('category.index')
+                ->with(['succes' => 'data keupdate']);
     }
 
     /**
@@ -99,6 +114,9 @@ class categorycontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('category.index')
+        ->with(['succes' => 'data kehapus']);
     }
 }
